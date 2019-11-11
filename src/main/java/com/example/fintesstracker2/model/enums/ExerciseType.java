@@ -1,6 +1,6 @@
 package com.example.fintesstracker2.model.enums;
 
-public enum TypesOfExercises {
+public enum ExerciseType {
     PUSH_UPS, // отжимания на брусьях
     PUSH_UPS_ON_THE_FLOOR, // отжимания на полу
     SQUATS, // приседания со штангой

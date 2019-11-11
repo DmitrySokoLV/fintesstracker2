@@ -2,12 +2,18 @@ package com.example.fintesstracker2.model;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
-class User {
+public class User {
+
     private int id;
     private String name;
-    private int weight;
+    private double weight;
     private int height;
-    private double BMS; // индекс массы тела
+
+    // индекс массы тела
+    private double bms;
+    private Set<Training> trainings;
 
 }

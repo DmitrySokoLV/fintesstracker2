@@ -1,9 +1,16 @@
 package com.example.fintesstracker2.model;
 
-import com.example.fintesstracker2.model.enums.TypesOfExercises;
+import com.example.fintesstracker2.model.enums.ExerciseType;
+import lombok.Data;
 
+@Data
 public class Exercise {
-    private TypesOfExercises typeOfExercises;
+
+    // тип упражнения
+    private ExerciseType exerciseType;
+    // кол-во повторений
     private int numberOfTimes;
-    private int numberOfApproaches = 4; // количество подходов ровняется 4 по умолчанию.
+    // кол-во подходов
+    private int numberOfApproaches;
+
 }

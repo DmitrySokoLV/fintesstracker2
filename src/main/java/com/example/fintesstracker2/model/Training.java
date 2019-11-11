@@ -3,12 +3,15 @@ package com.example.fintesstracker2.model;
 
 import lombok.Data;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class Training {
-    private String status; // или лучше statusOfTraining?
-    private Calendar calendar; // или использовать тут класс Data
-    // упражнения коллекция
+
+    private String status;
+    private LocalDate date;
     private User user;
+    private List<Exercise> exercises;
+
 }
