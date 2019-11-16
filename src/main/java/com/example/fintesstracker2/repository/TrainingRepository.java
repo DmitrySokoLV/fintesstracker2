@@ -1,4 +1,6 @@
 package com.example.fintesstracker2.repository;
 
-public interface TrainingRepository {
-}
+import com.example.fintesstracker2.model.Training;
+import org.springframework.data.repository.CrudRepository;
+
+public interface TrainingRepository extends CrudRepository<Training, Integer> { }
