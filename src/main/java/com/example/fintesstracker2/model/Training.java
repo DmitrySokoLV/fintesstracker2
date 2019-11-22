@@ -20,8 +20,16 @@ public class Training {
     @Column(name = "CREATED_DATE")
     private LocalDate date;
 
-    @ManyToOne
+    // fetch = FetchType.EAGER - когда происходит тренировка, я буду получать инфу, какой пользователь ее делал
+    @ManyToMany(fetch = FetchType.EAGER)
+    //нужно для того чтобы в бд это поле было юзер айди, а не как по умолчанию = авто айди
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    //нужно для того чтобы в бд это поле было юзер айди, а не как по умолчанию = авто айди
+    @JoinColumn(name = "exercises_id", nullable = false)
     private List<Exercise> exercises;
+
+    public Training() {}
 }

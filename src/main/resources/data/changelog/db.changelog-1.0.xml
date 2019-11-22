@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="Dima">
+        <createTable tableName="user">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="varchar(255)"></column>
+            <column name="weight" type="double(20)"></column>
+            <column name="height" type="bigint(20)"></column>
+            <column name="bms" type="double(20)"></column>
+
+            <!--Проверить тут-->
+            <column name="user_training" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Dima">
+        <createTable tableName="training">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="status" type="varchar(255)"></column>
+            <column name="created_date" type="timestamp(8)"></column>
+
+            <!--Проверить тут-->
+            <column name="user_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="exercises_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Dima">
+        <createTable tableName="exercise">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <!--разобраться как тут делать, какой тип ставить и надо ли это?-->
+            <column name="exerciseType" type=""></column>
+            <column name="numberOfTimes" type="bigint(20)"></column>
+            <column name="numberOfApproaches" type="bigint(20)"></column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="Dima">
+        <insert tableName="user">
+            <column name="name" value="Dmitry"></column>
+            <column name="weight" value="74.6"></column>
+            <column name="height" value="178"></column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

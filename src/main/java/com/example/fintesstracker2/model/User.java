@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Data
 
+// entity сущность, которая необходима сохранять в базе данных
 @Entity
 
 // @Table(name = "user")
@@ -22,8 +23,8 @@ public class User {
     // индекс массы тела
     private double bms;
 
-    @OneToOne(mappedBy = "user",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
+    @OneToMany(mappedBy = "user_training", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Training> trainings;
+
+    public User() {}
 }

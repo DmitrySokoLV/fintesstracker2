@@ -16,10 +16,15 @@ public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     // тип упражнения
     private ExerciseType exerciseType;
+
     // кол-во повторений
     private int numberOfTimes;
+
     // кол-во подходов
     private int numberOfApproaches;
+
+    public Exercise() {}
 }
