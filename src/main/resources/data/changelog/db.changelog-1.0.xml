@@ -44,8 +44,7 @@
             <column name="id" type="bigint(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <!--разобраться как тут делать, какой тип ставить и надо ли это?-->
-            <column name="exerciseType" type=""></column>
+            <column name="exerciseType" type="varchar(255)"></column>
             <column name="numberOfTimes" type="bigint(20)"></column>
             <column name="numberOfApproaches" type="bigint(20)"></column>
         </createTable>

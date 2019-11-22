@@ -7,14 +7,12 @@ import java.util.Set;
 
 @Data
 
-// entity сущность, которая необходима сохранять в базе данных
 @Entity
-
-// @Table(name = "user")
+@Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double weight;
@@ -23,8 +21,6 @@ public class User {
     // индекс массы тела
     private double bms;
 
-    @OneToMany(mappedBy = "user_training", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Training> trainings;
-
-    public User() {}
 }
