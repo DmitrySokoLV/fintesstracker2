@@ -1,22 +1,22 @@
 package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.model.Exercise;
-import com.example.fintesstracker2.model.User;
-import com.example.fintesstracker2.model.enums.ExerciseType;
 
 import java.util.List;
 
 public interface ExerciseService {
 
-    public Exercise findById();
+    public Exercise findById(long id);
 
     public List<Exercise> findAll();
 
-    public void createUser(Exercise exercise);
+    public long createExercise(Exercise exercise);
 
-    public void updateUser(Exercise exercise);
+    public void updateExercise(Exercise exercise);
 
-    public void removeUser(Integer id);
+    public void removeExercise(long id);
 
-    public void changeExercise(Exercise exercise, ExerciseType exerciseType);
+    public void updateNumberOfTimes(long id, int numberOfTimes);
+
+    public void updateNumberOfApproaches(long id, int numberOfApproaches);
 }

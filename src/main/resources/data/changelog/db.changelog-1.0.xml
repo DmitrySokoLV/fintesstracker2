@@ -4,10 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
     <changeSet id="1" author="Dima">
         <createTable tableName="user">
-
-            <column name="id" type="int(20)" autoIncrement="true">
+            <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
 
@@ -16,8 +16,7 @@
             <column name="height" type="int(20)"></column>
             <column name="bmi" type="double(20)"></column>
 
-            <!--Проверить тут !!!!!!!!!!!-->
-            <column name="trainings" type="varchar(255)">
+            <column name="trainings">
                 <constraints nullable="false" />
             </column>
         </createTable>
@@ -25,29 +24,21 @@
 
     <changeSet id="2" author="Dima">
         <createTable tableName="training">
-            <column name="id" type="int(20)" autoIncrement="true">
+            <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-
             <column name="status" type="varchar(255)"></column>
             <column name="created_date" type="timestamp(8)"></column>
-
-            <!--Проверить тут-->
-            <column name="user_id" type="int(20)">
-                <constraints nullable="false" />
-            </column>
-
-            <!--Колонка List правильно ли я указал варчар? -->
-            <column name="exercises_id" type="varchar(255)">
+            <column name="user_id">
                 <constraints nullable="false" />
             </column>
         </createTable>
     </changeSet>
 
-    <!--Проверить тут-->
+
     <changeSet id="4" author="Dima">
         <createTable tableName="training_exercises">
-            <column name="id" type="bigint(20)" autoIncrement="true">
+            <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="training_id" type="int(20)">
@@ -61,7 +52,7 @@
 
     <changeSet id="5" author="Dima">
         <createTable tableName="exercise">
-            <column name="id" type="bigint(20)" autoIncrement="true">
+            <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="exerciseType" type="varchar(255)"></column>

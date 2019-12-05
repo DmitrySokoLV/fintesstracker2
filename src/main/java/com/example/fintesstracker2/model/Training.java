@@ -4,9 +4,22 @@ package com.example.fintesstracker2.model;
 import com.example.fintesstracker2.model.enums.StatusTraining;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Data
 
@@ -16,7 +29,7 @@ public class Training {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Enumerated(value = EnumType.STRING)
     private StatusTraining status;
@@ -35,5 +48,5 @@ public class Training {
     @JoinTable(name = "training_exercises",
             joinColumns = @JoinColumn(name = "training_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "exercise_id", nullable = false))
-    private List<Exercise> exercises;
+    private Set<Exercise> exercises;
 }
