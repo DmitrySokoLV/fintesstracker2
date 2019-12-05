@@ -19,8 +19,8 @@ public class User {
     private int height;
 
     // индекс массы тела
-    private double bms;
+    private double bmi;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Training> trainings;
 }

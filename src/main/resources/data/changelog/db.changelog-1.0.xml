@@ -6,50 +6,71 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet id="1" author="Dima">
         <createTable tableName="user">
-            <column name="id" type="bigint(20)" autoIncrement="true">
+
+            <column name="id" type="int(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
+
             <column name="name" type="varchar(255)"></column>
             <column name="weight" type="double(20)"></column>
-            <column name="height" type="bigint(20)"></column>
-            <column name="bms" type="double(20)"></column>
+            <column name="height" type="int(20)"></column>
+            <column name="bmi" type="double(20)"></column>
 
-            <!--Проверить тут-->
-            <column name="user_training" type="bigint(20)">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
+            <!--Проверить тут !!!!!!!!!!!-->
+            <column name="trainings" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
-
         </createTable>
     </changeSet>
+
     <changeSet id="2" author="Dima">
         <createTable tableName="training">
-            <column name="id" type="bigint(20)" autoIncrement="true">
+            <column name="id" type="int(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
+
             <column name="status" type="varchar(255)"></column>
             <column name="created_date" type="timestamp(8)"></column>
 
             <!--Проверить тут-->
-            <column name="user_id" type="bigint(20)">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
-            </column>
-            <column name="exercises_id" type="bigint(20)">
-                <constraints nullable="false" primaryKey="true" unique="true"/>
+            <column name="user_id" type="int(20)">
+                <constraints nullable="false" />
             </column>
 
+            <!--Колонка List правильно ли я указал варчар? -->
+            <column name="exercises_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
         </createTable>
     </changeSet>
-    <changeSet id="3" author="Dima">
+
+    <!--Проверить тут-->
+    <changeSet id="4" author="Dima">
+        <createTable tableName="training_exercises">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="training_id" type="int(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="exercise_id" type="int(20)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="Dima">
         <createTable tableName="exercise">
             <column name="id" type="bigint(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="exerciseType" type="varchar(255)"></column>
-            <column name="numberOfTimes" type="bigint(20)"></column>
-            <column name="numberOfApproaches" type="bigint(20)"></column>
+            <column name="numberOfTimes" type="int(20)"></column>
+            <column name="numberOfApproaches" type="int(20)"></column>
         </createTable>
     </changeSet>
-    <changeSet id="4" author="Dima">
+
+    <changeSet id="6" author="Dima">
         <insert tableName="user">
             <column name="name" value="Dmitry"></column>
             <column name="weight" value="74.6"></column>
