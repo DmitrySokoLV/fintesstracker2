@@ -10,9 +10,9 @@ public interface UserService {
 
     public List<User> findAll();
 
-    public long createUser(User user);
+    public long createUser(UserDto user);
 
-    public void updateUser(User user);
+    public void updateUser(UserDto user);
 
     public void removeUser(long id);
 

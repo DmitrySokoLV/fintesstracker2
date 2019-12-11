@@ -2,10 +2,10 @@ mysql -u root -p
 
 create database fitness_tracker;
 
-create user 'test_user'@'localhost' identified by '54047922';
+create user 'root'@'localhost' identified by '54047922';
 
 # Нужны ли привелегии? думаю что да.
-GRANT ALL PRIVILEGES ON dbase_name.* to 'db_user'@'localhost'
+GRANT ALL PRIVILEGES ON 'fitness_tracker' to 'db_user'@'localhost'
     -> IDENTIFIED BY 'pass' WITH GRANT OPTION;
 
 # применяем привелегии
@@ -18,35 +18,31 @@ mysql -u test_user -p
 use fitness_tracker;
 
 create table `user` (
-`id`          int unsigned NOT NULL AUTO_INCREMENT,
+`id`          int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `name`        varchar(255) NOT NULL,
-`weight`      double(20) NOT NULL,
-`height`      double(20) NOT NULL,
-`bmi`         double(20) NULL,
-`trainings`   NULL,
-PRIMARY KEY     (`id`)
+`weight`      double NOT NULL,
+`height`      double NOT NULL,
+`bmi`         double
 );
 
 create table `training`  (
-`id`              int unsigned NOT NULL AUTO_INCREMENT,
+`id`              int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `status`          varchar(255) NOT NULL,
-`created_date`    timestamp(8) NOT NULL,
-`user_id`         NOT NULL,
-PRIMARY KEY     (`id`)
+`created_date`    timestamp NOT NULL,
+`user_id`         int unsigned NOT NULL
 );
 
 create table `training_exercises` (
-`id`            int unsigned NOT NULL AUTO_INCREMENT,
-`training_id`   int NOT NULL,
-`exercise_id`   int NOT NULL,
-PRIMARY KEY     (`id`)
+`id`            int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`training_id`   int unsigned NOT NULL,
+`exercise_id`   int unsigned NOT NULL,
+FOREIGN KEY training_exercises
 );
 
 create table `exercise`  (
-`id`                    int unsigned NOT NULL AUTO_INCREMENT,
+`id`                    int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `exerciseType`          varchar(255) NOT NULL,
 `numberOfTimes`         int NULL,
-`numberOfApproaches`    int NULL,
-PRIMARY KEY     (`id`)
+`numberOfApproaches`    int NULL
 );
 

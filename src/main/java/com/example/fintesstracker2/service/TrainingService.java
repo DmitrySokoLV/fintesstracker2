@@ -17,5 +17,5 @@ public interface TrainingService {
 
     public void removeTraining(long id);
 
-    public void changeStatus(Training training, long id, StatusTraining status);
+    public void changeStatus(long id, StatusTraining status);
 }
