@@ -12,7 +12,7 @@ public interface ExerciseService {
 
     public long createExercise(Exercise exercise);
 
-    public void updateExercise(Exercise exercise);
+    public void updateExercise(Exercise exercise, long id);
 
     public void removeExercise(long id);
 

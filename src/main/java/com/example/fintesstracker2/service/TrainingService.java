@@ -13,9 +13,9 @@ public interface TrainingService {
 
     public long createTraining(Training training);
 
-    public void updateTraining(Training training);
+    public void updateTraining(Training training, long id);
 
     public void removeTraining(long id);
 
-    public void changeStatus(Training training, long id, StatusTraining status);
+    public void changeStatus(long id, StatusTraining status);
 }
