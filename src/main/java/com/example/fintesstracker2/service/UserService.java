@@ -1,18 +1,18 @@
 package com.example.fintesstracker2.service;
 
-import com.example.fintesstracker2.model.User;
+import com.example.fintesstracker2.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    public User findById(long id);
+    public UserDto findById(long id);
 
-    public List<User> findAll();
+    public List<UserDto> findAll();
 
-    public long createUser(User user);
+    public long createUser(UserDto userDto);
 
-    public void updateUser(User user, long id);
+    public void updateUser(UserDto userDto, long id);
 
     public void removeUser(long id);
 
