@@ -1,12 +1,6 @@
-create database fitness_tracker;
+--liquibase formatted sql
 
-CREATE USER 'root_dmitry'@'localhost' IDENTIFIED BY '54047922';
-ALTER USER 'root_dmitry'@'localhost' PASSWORD EXPIRE NEVER;
-CREATE SCHEMA `fitness_tracker` CHARACTER SET utf8 COLLATE utf8_general_ci;
-GRANT ALL ON `fitness_tracker`.* TO 'root_dmitry'@'localhost';
-
-use fitness_tracker;
-
+--changeset dima:1
 create table `user` (
 `id`          int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `name`        varchar(255) NOT NULL,
@@ -15,6 +9,7 @@ create table `user` (
 `bmi`         double NULL
 );
 
+--changeset dima:2
 create table `training`  (
 `id`              int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `status`          varchar(255) NOT NULL,
@@ -22,6 +17,7 @@ create table `training`  (
 `user_id`         int unsigned NOT NULL
 );
 
+--changeset dima:3
 create table `exercise`  (
 `id`                    int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `exerciseType`          varchar(255) NULL,
@@ -29,6 +25,7 @@ create table `exercise`  (
 `numberOfApproaches`    int NULL
 );
 
+--changeset dima:4
 create table `training_exercises` (
 `id`            int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `training_id`   int unsigned NOT NULL,
@@ -37,4 +34,5 @@ CONSTRAINT trainings_exercises_fk FOREIGN KEY (training_id) REFERENCES `training
 CONSTRAINT trainings_exercises_fk2 FOREIGN KEY (exercise_id) REFERENCES `exercise` (`id`)
 );
 
+--changeset dima:5
 INSERT INTO `user` (name, weight, height) VALUES ('dima', 76.5, 176);

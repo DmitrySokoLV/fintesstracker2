@@ -1,8 +1,6 @@
 package com.example.fintesstracker2.controller;
 
-import com.example.fintesstracker2.dto.TrainingDto;
-import com.example.fintesstracker2.dto.UserDto;
-import com.example.fintesstracker2.model.User;
+import com.example.fintesstracker2.dto.UserDTO;
 import com.example.fintesstracker2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -24,26 +21,26 @@ public class UserController {
 
     private UserService userService;
 
-    private UserDto userDto;
+    private UserDTO userDto;
 
     @GetMapping
-    public List<UserDto> findAll() {
+    public List<UserDTO> findAll() {
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public UserDto findById(@PathVariable long id) {
+    public UserDTO findById(@PathVariable long id) {
         return userService.findById(id);
     }
 
     @PostMapping
-    public long create(@RequestBody UserDto userDto) {
+    public long create(@RequestBody UserDTO userDto) {
         return userService.createUser(userDto);
     }
 
     // сделал пример варианта для себя, чтобы разобраться
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, UserDto userDto) {
+    public void update(@PathVariable long id, UserDTO userDto) {
         userService.updateUser(userDto, id);
     }
 
@@ -51,7 +48,5 @@ public class UserController {
     public void removeUser(@PathVariable long id) {
         userService.removeUser(id);
     }
-
-
 
 }

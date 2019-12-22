@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Set;
 
 @Data
-public class UserDto {
+public class UserDTO {
 
     @Id
     private long id;

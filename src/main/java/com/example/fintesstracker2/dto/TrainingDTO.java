@@ -1,6 +1,7 @@
 package com.example.fintesstracker2.dto;
 
 import com.example.fintesstracker2.model.Exercise;
+import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.model.enums.StatusTraining;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-public class TrainingDto {
+public class TrainingDTO {
 
     @Id
     private long id;
@@ -18,7 +19,7 @@ public class TrainingDto {
 
     private LocalDate date;
 
-    private UserDto user;
+    private User user;
 
     private Set<Exercise> exercises;
 }

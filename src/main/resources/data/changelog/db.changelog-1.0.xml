@@ -36,7 +36,7 @@
     </changeSet>
 
 
-    <changeSet id="4" author="Dima">
+    <changeSet id="3" author="Dima">
         <createTable tableName="training_exercises">
             <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
@@ -50,7 +50,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="5" author="Dima">
+    <changeSet id="4" author="Dima">
         <createTable tableName="exercise">
             <column name="id" type="long(20)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
@@ -61,7 +61,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="6" author="Dima">
+    <changeSet id="5" author="Dima">
         <insert tableName="user">
             <column name="name" value="Dmitry"></column>
             <column name="weight" value="74.6"></column>

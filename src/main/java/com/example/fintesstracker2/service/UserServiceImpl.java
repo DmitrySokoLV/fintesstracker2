@@ -1,35 +1,33 @@
 package com.example.fintesstracker2.service;
 
-import com.example.fintesstracker2.dto.UserDto;
+import com.example.fintesstracker2.dto.UserDTO;
 import com.example.fintesstracker2.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     @Override
-    public UserDto findById(long id) {
+    public UserDTO findById(long id) {
         return null;
     }
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserDTO> findAll() {
         return null;
     }
 
     @Override
-    public long createUser(UserDto userDto) {
+    public long createUser(UserDTO userDto) {
         return 0;
     }
 
     @Override
-    public void updateUser(UserDto userDto, long id) {
+    public void updateUser(UserDTO userDto, long id) {
 
     }
 
     @Override
-    public void removeUser(long id) {
-
-    }
+    public void removeUser(long id) { }
 
     @Override
     public double bmiCalculate(long id, double weight, int height) {
@@ -41,4 +39,27 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
+    private static UserDTO toUserDTO(User user) {
+        UserDTO dto = new UserDTO();
+
+        dto.setName(user.getName());
+        dto.setWeight(user.getWeight());
+        dto.setHeight(user.getHeight());
+        dto.setBmi(user.getBmi());
+        dto.setTrainings(user.getTrainings());
+
+        return dto;
+    }
+
+    private static User toUser(UserDTO userDTO) {
+        User user = new User();
+
+        user.setName(userDTO.getName());
+        user.setWeight(userDTO.getWeight());
+        user.setHeight(userDTO.getHeight());
+        user.setBmi(userDTO.getBmi());
+        user.setTrainings(userDTO.getTrainings());
+
+        return user;
+    }
 }

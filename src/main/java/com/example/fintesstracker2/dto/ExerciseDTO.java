@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Id;
 
 @Data
-public class ExerciseDto {
+public class ExerciseDTO {
 
     @Id
     private long id;
