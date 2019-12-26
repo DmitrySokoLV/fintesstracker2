@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ExerciseController {
 
-    private ExerciseService exerciseService;
-
-    private ExerciseDTO exerciseDto;
+    private final ExerciseService exerciseService;
 
     @GetMapping
     public List<ExerciseDTO> findAll() { return exerciseService.findAll()

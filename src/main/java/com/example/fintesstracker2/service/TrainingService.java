@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface TrainingService {
 
-    public Training findById(long id);
+    Training findById(long id);
 
-    public List<Training> findAll();
+    List<Training> findAll();
 
-    public long createTraining(TrainingDTO trainingDto);
+    long createTraining(TrainingDTO trainingDto);
 
-    public void updateTraining(long id, TrainingDTO trainingDto);
+    void updateTraining(long id, TrainingDTO trainingDto);
 
-    public void removeTraining(long id);
+    void removeTraining(long id);
 
-    public void changeStatus(long id, StatusTraining status);
+    void changeStatus(long id, StatusTraining status);
 }

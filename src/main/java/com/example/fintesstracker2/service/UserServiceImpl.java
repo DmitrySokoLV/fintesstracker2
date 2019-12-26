@@ -12,15 +12,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
 
     @Override
     public User findById(long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    // лбио сделать Iterable?
     @Override
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
@@ -28,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public long createUser(UserDTO userDto) {
-        return userRepository.save(toUser(userDto.getId()));
+        return userRepository.save(toUser(userDto)).getId();
     }
 
     @Override

@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface UserService {
 
-    public User findById(long id);
+    User findById(long id);
 
-    public List<User> findAll();
+    List<User> findAll();
 
-    public long createUser(UserDTO userDto);
+    long createUser(UserDTO userDto);
 
-    public void updateUser(long id, UserDTO userDto);
+    void updateUser(long id, UserDTO userDto);
 
-    public void removeUser(long id);
+    void removeUser(long id);
 
-    public double bmiCalculate(long id, double weight, int height);
+    double bmiCalculate(long id, double weight, int height);
 
-    public double updateBMI(long id, double bmi);
+    double updateBMI(long id, double bmi);
 }

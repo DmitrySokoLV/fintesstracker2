@@ -20,9 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TrainingController {
 
-    private TrainingService trainingService;
-
-    private TrainingDTO trainingDto;
+    private final TrainingService trainingService;
 
     @GetMapping
     public List<TrainingDTO> findAll() {

@@ -16,7 +16,7 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public Exercise findById(long id) {
-        return exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+        return exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
     }
 
     @Override
@@ -26,12 +26,12 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public long createExercise(ExerciseDTO exerciseDto) {
-        return exerciseRepository.save(toExercise(exerciseDto));
+        return exerciseRepository.save(toExercise(exerciseDto)).getId();
     }
 
     @Override
     public void updateExercise(long id, ExerciseDTO exerciseDto) {
-        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
         Exercise updateExercise = toExercise(exerciseDto);
         updateExercise.setId(exerciseFromRepository.getId());
         exerciseRepository.save(updateExercise);

@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
 
-    private UserService userService;
-
-    private UserDTO userDto;
+    private final UserService userService;
 
     @GetMapping
     public List<UserDTO> findAll() {
