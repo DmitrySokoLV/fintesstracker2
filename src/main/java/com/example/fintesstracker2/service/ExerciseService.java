@@ -1,18 +1,20 @@
 package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.ExerciseDTO;
+import com.example.fintesstracker2.model.Exercise;
+import com.example.fintesstracker2.model.Training;
 
 import java.util.List;
 
 public interface ExerciseService {
 
-    public ExerciseDTO findById(long id);
+    public Exercise findById(long id);
 
-    public List<ExerciseDTO> findAll();
+    public List<Exercise> findAll();
 
     public long createExercise(ExerciseDTO exerciseDto);
 
-    public void updateExercise(ExerciseDTO exerciseDto, long id);
+    public void updateExercise(long id, ExerciseDTO exerciseDto);
 
     public void removeExercise(long id);
 

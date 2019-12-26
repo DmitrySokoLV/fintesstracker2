@@ -2,32 +2,45 @@ package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.UserDTO;
 import com.example.fintesstracker2.model.User;
+import com.example.fintesstracker2.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Override
-    public UserDTO findById(long id) {
-        return null;
-    }
+
+    private UserRepository userRepository;
+
 
     @Override
-    public List<UserDTO> findAll() {
-        return null;
+    public User findById(long id) {
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    // лбио сделать Iterable?
+    @Override
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
     }
 
     @Override
     public long createUser(UserDTO userDto) {
-        return 0;
+        return userRepository.save(toUser(userDto.getId()));
     }
 
     @Override
-    public void updateUser(UserDTO userDto, long id) {
-
+    public void updateUser(long id, UserDTO userDto) {
+        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+        User updateUser = toUser(userDto);
+        updateUser.setId(userFromRepository.getId());
+        userRepository.save(updateUser);
     }
 
     @Override
-    public void removeUser(long id) { }
+    public void removeUser(long id) { userRepository.deleteById(id);}
 
     @Override
     public double bmiCalculate(long id, double weight, int height) {
@@ -39,17 +52,6 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
-    private static UserDTO toUserDTO(User user) {
-        UserDTO dto = new UserDTO();
-
-        dto.setName(user.getName());
-        dto.setWeight(user.getWeight());
-        dto.setHeight(user.getHeight());
-        dto.setBmi(user.getBmi());
-        dto.setTrainings(user.getTrainings());
-
-        return dto;
-    }
 
     private static User toUser(UserDTO userDTO) {
         User user = new User();

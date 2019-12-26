@@ -2,33 +2,44 @@ package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.ExerciseDTO;
 import com.example.fintesstracker2.model.Exercise;
+import com.example.fintesstracker2.repository.ExerciseRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class ExerciseServiceImpl implements ExerciseService{
+
+    private final ExerciseRepository exerciseRepository;
+
     @Override
-    public ExerciseDTO findById(long id) {
-        return null;
+    public Exercise findById(long id) {
+        return exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
     }
 
     @Override
-    public List<ExerciseDTO> findAll() {
-        return null;
+    public List<Exercise> findAll() {
+        return (List<Exercise>) exerciseRepository.findAll();
     }
 
     @Override
     public long createExercise(ExerciseDTO exerciseDto) {
-        return 0;
+        return exerciseRepository.save(toExercise(exerciseDto));
     }
 
     @Override
-    public void updateExercise(ExerciseDTO exerciseDto, long id) {
-
+    public void updateExercise(long id, ExerciseDTO exerciseDto) {
+        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+        Exercise updateExercise = toExercise(exerciseDto);
+        updateExercise.setId(exerciseFromRepository.getId());
+        exerciseRepository.save(updateExercise);
     }
 
     @Override
     public void removeExercise(long id) {
-
+        exerciseRepository.deleteById(id);
     }
 
     @Override
@@ -39,16 +50,6 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public void updateNumberOfApproaches(long id, int numberOfApproaches) {
 
-    }
-
-    private static ExerciseDTO toExerciseDTO(Exercise exercise) {
-        ExerciseDTO dto = new ExerciseDTO();
-
-        dto.setExerciseType(exercise.getExerciseType());
-        dto.setNumberOfTimes(exercise.getNumberOfTimes());
-        dto.setNumberOfApproaches(exercise.getNumberOfApproaches());
-
-        return dto;
     }
 
     private static Exercise toExercise(ExerciseDTO exerciseDTO) {
