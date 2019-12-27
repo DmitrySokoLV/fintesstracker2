@@ -47,7 +47,8 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public void changeStatus(long id, StatusTraining status) {
         Training trainingFromRepository = trainingRepository.findById(id).orElseThrow(() -> new RuntimeException("Training not found"));
-
+        trainingFromRepository.setStatus(status);
+        trainingRepository.save(trainingFromRepository);
     }
 
 

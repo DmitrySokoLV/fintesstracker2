@@ -44,12 +44,17 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public void updateNumberOfTimes(long id, int numberOfTimes) {
-
+        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
+        exerciseFromRepository.setNumberOfTimes(numberOfTimes);
+        exerciseRepository.save(exerciseFromRepository);
     }
 
     @Override
     public void updateNumberOfApproaches(long id, int numberOfApproaches) {
+        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
 
+        exerciseFromRepository.setNumberOfApproaches(numberOfApproaches);
+        exerciseRepository.save(exerciseFromRepository);
     }
 
     private static Exercise toExercise(ExerciseDTO exerciseDTO) {

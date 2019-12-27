@@ -7,5 +7,11 @@
 
 
 
-        <include file="com/example/db/changelog/db.changelog-1.0.xml"/>
+        <include file="data/changelog/db.changelog-1.0.xml"/>
+
+        <!--
+        /home/dmitry/IdeaProjects/fintesstracker2/src/main/resources/data/changelog/db.changelog-1.0.xml
+        resources/data/changelog/db.changelog-1.0.xml
+        data/changelog/db.changelog-1.0.xml
+        -->
 </databaseChangeLog>

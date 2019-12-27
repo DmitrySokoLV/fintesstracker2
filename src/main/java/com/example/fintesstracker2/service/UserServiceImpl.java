@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(long id, UserDTO userDto) {
-        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         User updateUser = toUser(userDto);
         updateUser.setId(userFromRepository.getId());
         userRepository.save(updateUser);
@@ -40,14 +40,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeUser(long id) { userRepository.deleteById(id);}
 
-    @Override
-    public double bmiCalculate(long id, double weight, int height) {
-        return 0;
-    }
+
+    public double bmiCalculate(double weight, int height) { return weight/Math.pow(height/100.0, 2); }
+
 
     @Override
-    public double updateBMI(long id, double bmi) {
-        return 0;
+    public double updateBMI(long id) {
+        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        double newBmi = bmiCalculate(userFromRepository.getWeight(), userFromRepository.getHeight());
+
+        userFromRepository.setBmi(Math.max(newBmi, 25));
+
+        userRepository.save(userFromRepository);
+
+        return newBmi;
     }
 
 
