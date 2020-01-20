@@ -57,4 +57,26 @@
             INSERT INTO `user` (name, weight, height) VALUES ('dima', 76.5, 176);
         </sql>
     </changeSet>
+
+    <changeSet id="6" author="Dima">
+        <rollback>
+            drop table training_exercises;
+        </rollback>
+    </changeSet>
+    <changeSet id="7" author="Dima">
+        <rollback>
+            drop table exercise;
+        </rollback>
+    </changeSet>
+    <changeSet id="8" author="Dima">
+        <rollback>
+            drop table training;
+        </rollback>
+    </changeSet>
+    <changeSet id="9" author="Dima">
+        <rollback>
+            drop table user;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

@@ -21,7 +21,7 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public List<Exercise> findAll() {
-        return (List<Exercise>) exerciseRepository.findAll();
+        return exerciseRepository.findAll();
     }
 
     @Override
@@ -31,10 +31,12 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public void updateExercise(long id, ExerciseDTO exerciseDto) {
-        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
-        Exercise updateExercise = toExercise(exerciseDto);
-        updateExercise.setId(exerciseFromRepository.getId());
-        exerciseRepository.save(updateExercise);
+        Exercise exerciseFromRepository = findById(id);
+        exerciseFromRepository.setExerciseType(exerciseDto.getExerciseType());
+        exerciseFromRepository.setNumberOfTimes(exerciseDto.getNumberOfTimes());
+        exerciseFromRepository.setNumberOfApproaches(exerciseDto.getNumberOfApproaches());
+
+        exerciseRepository.save(exerciseFromRepository);
     }
 
     @Override
@@ -44,14 +46,14 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public void updateNumberOfTimes(long id, int numberOfTimes) {
-        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
+        Exercise exerciseFromRepository = findById(id);
         exerciseFromRepository.setNumberOfTimes(numberOfTimes);
         exerciseRepository.save(exerciseFromRepository);
     }
 
     @Override
     public void updateNumberOfApproaches(long id, int numberOfApproaches) {
-        Exercise exerciseFromRepository = exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
+        Exercise exerciseFromRepository = findById(id);
 
         exerciseFromRepository.setNumberOfApproaches(numberOfApproaches);
         exerciseRepository.save(exerciseFromRepository);

@@ -22,7 +22,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public List<Training> findAll() {
-        return (List<Training>) trainingRepository.findAll();
+        return trainingRepository.findAll();
     }
 
     @Override
@@ -33,20 +33,25 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public void updateTraining(long id, TrainingDTO trainingDto) {
-        Training trainingFromRepository = trainingRepository.findById(id).orElseThrow(() -> new RuntimeException("Training not found"));
-        Training updateTraining = toTraining(trainingDto);
-        updateTraining.setId(trainingFromRepository.getId());
-        trainingRepository.save(updateTraining);
+        Training trainingFromRepository = findById(id);
+        trainingFromRepository.setStatus(trainingDto.getStatus());
+        trainingFromRepository.setDate(trainingDto.getDate());
+        trainingFromRepository.setUser(trainingDto.getUser());
+        trainingFromRepository.setExercises(trainingDto.getExercises());
+        trainingRepository.save(trainingFromRepository);
     }
 
     @Override
     public void removeTraining(long id) {
-        trainingRepository.deleteById(id);
+
+        // тест для отлавливания ошибки
+        Training trainingFromRepository = findById(id);
+        trainingRepository.deleteById(trainingFromRepository.getId());
     }
 
     @Override
     public void changeStatus(long id, StatusTraining status) {
-        Training trainingFromRepository = trainingRepository.findById(id).orElseThrow(() -> new RuntimeException("Training not found"));
+        Training trainingFromRepository = findById(id);
         trainingFromRepository.setStatus(status);
         trainingRepository.save(trainingFromRepository);
     }

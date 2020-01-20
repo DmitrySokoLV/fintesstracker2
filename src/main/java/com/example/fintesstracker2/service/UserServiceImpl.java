@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
@@ -31,22 +31,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(long id, UserDTO userDto) {
-        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        User updateUser = toUser(userDto);
-        updateUser.setId(userFromRepository.getId());
-        userRepository.save(updateUser);
+        User userFromRepository = findById(id);
+        userFromRepository.setName(userDto.getName());
+        userFromRepository.setWeight(userDto.getWeight());
+        userFromRepository.setHeight(userDto.getHeight());
+        userFromRepository.setBmi(userDto.getBmi());
+        userFromRepository.setTrainings(userDto.getTrainings());
+        userRepository.save(userFromRepository);
     }
 
     @Override
-    public void removeUser(long id) { userRepository.deleteById(id);}
-
-
-    public double bmiCalculate(double weight, int height) { return weight/Math.pow(height/100.0, 2); }
-
+    public void removeUser(long id) {
+        userRepository.deleteById(id);
+    }
 
     @Override
     public double updateBMI(long id) {
-        User userFromRepository = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        User userFromRepository = findById(id);
         double newBmi = bmiCalculate(userFromRepository.getWeight(), userFromRepository.getHeight());
 
         userFromRepository.setBmi(Math.max(newBmi, 25));
@@ -54,6 +55,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userFromRepository);
 
         return newBmi;
+    }
+
+    private double bmiCalculate(double weight, int height) {
+        return weight / Math.pow(height / 100.0, 2);
     }
 
 
