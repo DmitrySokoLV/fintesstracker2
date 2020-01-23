@@ -43,10 +43,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public void removeTraining(long id) {
-
-        // тест для отлавливания ошибки
-        Training trainingFromRepository = findById(id);
-        trainingRepository.deleteById(trainingFromRepository.getId());
+        trainingRepository.delete(findById(id));
     }
 
     @Override

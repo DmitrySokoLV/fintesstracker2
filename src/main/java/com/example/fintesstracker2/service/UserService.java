@@ -18,6 +18,4 @@ public interface UserService {
     void removeUser(long id);
 
     double updateBMI(long id);
-
-    //double updateBMI(long id, double bmi);
 }

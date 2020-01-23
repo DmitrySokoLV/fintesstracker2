@@ -5,14 +5,12 @@ import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.model.enums.StatusTraining;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Data
 public class TrainingDTO {
 
-    @Id
     private long id;
 
     private StatusTraining status;
