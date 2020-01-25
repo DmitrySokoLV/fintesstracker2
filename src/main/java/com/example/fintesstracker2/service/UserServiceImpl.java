@@ -12,6 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final static double MIN_BMI = 25;
+    private final static double PERCENT = 100.0;
+    private final static int VALUE_TO_THE_FORMULA = 2;
+
     private final UserRepository userRepository;
 
     @Override
@@ -42,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeUser(long id) {
-        userRepository.deleteById(id);
+        userRepository.delete(findById(id));
     }
 
     @Override
@@ -50,7 +54,7 @@ public class UserServiceImpl implements UserService {
         User userFromRepository = findById(id);
         double newBmi = bmiCalculate(userFromRepository.getWeight(), userFromRepository.getHeight());
 
-        userFromRepository.setBmi(Math.max(newBmi, 25));
+        userFromRepository.setBmi(Math.max(newBmi, MIN_BMI));
 
         userRepository.save(userFromRepository);
 
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private double bmiCalculate(double weight, int height) {
-        return weight / Math.pow(height / 100.0, 2);
+        return weight / Math.pow(height / PERCENT, VALUE_TO_THE_FORMULA);
     }
 
 
@@ -66,6 +70,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
 
         user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
         user.setWeight(userDTO.getWeight());
         user.setHeight(userDTO.getHeight());
         user.setBmi(userDTO.getBmi());

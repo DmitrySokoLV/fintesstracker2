@@ -10,11 +10,16 @@
             create table `user` (
             `id`          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             `name`        VARCHAR(255) NOT NULL,
+            `email`       VARCHAR(255) NOT NULL,
+            `password`    VARCHAR(255) NOT NULL,
             `weight`      DOUBLE NOT NULL,
             `height`      INT NOT NULL,
             `bmi`         DOUBLE NULL
             );
         </sql>
+        <rollback>
+            drop table user;
+        </rollback>
     </changeSet>
 
     <changeSet id="2" author="Dima">
@@ -26,6 +31,9 @@
             `user_id`         INT UNSIGNED NOT NULL
             );
         </sql>
+        <rollback>
+            drop table training;
+        </rollback>
     </changeSet>
 
 
@@ -38,6 +46,9 @@
             `numberOfApproaches`    INT NULL
             );
         </sql>
+        <rollback>
+            drop table exercise;
+        </rollback>
     </changeSet>
 
     <changeSet id="4" author="Dima">
@@ -50,33 +61,14 @@
             CONSTRAINT exercise_training_fk FOREIGN KEY (exercise_id) REFERENCES `exercise` (`id`)
             );
         </sql>
-    </changeSet>
-
-    <changeSet id="5" author="Dima">
-        <sql>
-            INSERT INTO `user` (name, weight, height) VALUES ('dima', 76.5, 176);
-        </sql>
-    </changeSet>
-
-    <changeSet id="6" author="Dima">
         <rollback>
             drop table training_exercises;
         </rollback>
     </changeSet>
-    <changeSet id="7" author="Dima">
-        <rollback>
-            drop table exercise;
-        </rollback>
-    </changeSet>
-    <changeSet id="8" author="Dima">
-        <rollback>
-            drop table training;
-        </rollback>
-    </changeSet>
-    <changeSet id="9" author="Dima">
-        <rollback>
-            drop table user;
-        </rollback>
-    </changeSet>
 
+    <changeSet id="5" author="Dima">
+        <sql>
+            INSERT INTO `user` (name, email, password weight, height) VALUES ('Dmitry', sokoldmitryv@gmail.com, 12345678, 76.5, 176);
+        </sql>
+    </changeSet>
 </databaseChangeLog>

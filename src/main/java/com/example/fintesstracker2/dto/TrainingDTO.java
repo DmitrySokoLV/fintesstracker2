@@ -11,8 +11,6 @@ import java.util.Set;
 
 @Data
 public class TrainingDTO {
-
-    @Id
     private long id;
 
     private StatusTraining status;

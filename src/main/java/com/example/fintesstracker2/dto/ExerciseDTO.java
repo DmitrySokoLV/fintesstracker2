@@ -7,8 +7,6 @@ import javax.persistence.Id;
 
 @Data
 public class ExerciseDTO {
-
-    @Id
     private long id;
 
     private ExerciseType exerciseType;

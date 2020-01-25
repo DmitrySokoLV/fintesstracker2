@@ -8,11 +8,12 @@ import java.util.Set;
 
 @Data
 public class UserDTO {
-
-    @Id
     private long id;
 
     private String name;
+
+    private String email;
+    private String password;
 
     private double weight;
 

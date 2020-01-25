@@ -56,6 +56,8 @@ public class UserController {
         UserDTO dto = new UserDTO();
 
         dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
+        dto.setPassword(user.getPassword());
         dto.setWeight(user.getWeight());
         dto.setHeight(user.getHeight());
         dto.setBmi(user.getBmi());
