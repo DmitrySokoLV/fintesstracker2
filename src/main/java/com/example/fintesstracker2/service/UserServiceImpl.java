@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(long id, UserDTO userDto) {
         User userFromRepository = findById(id);
+        userFromRepository.setId(userDto.getId());
         userFromRepository.setName(userDto.getName());
         userFromRepository.setWeight(userDto.getWeight());
         userFromRepository.setHeight(userDto.getHeight());
@@ -69,6 +70,7 @@ public class UserServiceImpl implements UserService {
     private static User toUser(UserDTO userDTO) {
         User user = new User();
 
+        user.setId(userDTO.getId());
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());

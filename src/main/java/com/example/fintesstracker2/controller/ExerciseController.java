@@ -39,11 +39,14 @@ public class ExerciseController {
     public void update(@PathVariable long id, ExerciseDTO exerciseDto) { exerciseService.updateExercise(id, exerciseDto); }
 
     @DeleteMapping("/{id")
-    public void delete(@PathVariable long id) {exerciseService.removeExercise(id);}
+    public void removeExercise(@PathVariable long id) {
+        exerciseService.removeExercise(id);
+    }
 
     private static ExerciseDTO toExerciseDTO(Exercise exercise) {
         ExerciseDTO dto = new ExerciseDTO();
 
+        dto.setId(exercise.getId());
         dto.setExerciseType(exercise.getExerciseType());
         dto.setNumberOfTimes(exercise.getNumberOfTimes());
         dto.setNumberOfApproaches(exercise.getNumberOfApproaches());

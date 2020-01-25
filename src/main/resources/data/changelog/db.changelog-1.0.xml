@@ -9,9 +9,9 @@
         <sql>
             create table `user` (
             `id`          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            `name`        VARCHAR(255) NOT NULL,
-            `email`       VARCHAR(255) NOT NULL,
-            `password`    VARCHAR(255) NOT NULL,
+            `name`        VARCHAR(30) NOT NULL,
+            `email`       VARCHAR(30) NOT NULL,
+            `password`    VARCHAR(30) NOT NULL,
             `weight`      DOUBLE NOT NULL,
             `height`      INT NOT NULL,
             `bmi`         DOUBLE NULL
@@ -26,7 +26,7 @@
         <sql>
             create table `training`  (
             `id`              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            `status`          VARCHAR(255) NOT NULL,
+            `status`          VARCHAR(30) NOT NULL,
             `created_date`    TIMESTAMP NOT NULL,
             `user_id`         INT UNSIGNED NOT NULL
             );
@@ -41,7 +41,7 @@
         <sql>
             create table `exercise`  (
             `id`                    INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            `exerciseType`          VARCHAR(255) NULL,
+            `exerciseType`          VARCHAR(30) NULL,
             `numberOfTimes`         INT NULL,
             `numberOfApproaches`    INT NULL
             );
@@ -68,7 +68,7 @@
 
     <changeSet id="5" author="Dima">
         <sql>
-            INSERT INTO `user` (name, email, password weight, height) VALUES ('Dmitry', sokoldmitryv@gmail.com, 12345678, 76.5, 176);
+            INSERT INTO `user` (name, email, password, weight, height, bmi) VALUES ('dima', 'sokoldmitryv@gmail.com', '12345678', 76.5, 176, 25.0);
         </sql>
     </changeSet>
 </databaseChangeLog>

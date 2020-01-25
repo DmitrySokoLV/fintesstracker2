@@ -32,6 +32,7 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public void updateExercise(long id, ExerciseDTO exerciseDto) {
         Exercise exerciseFromRepository = findById(id);
+        exerciseFromRepository.setId(exerciseDto.getId());
         exerciseFromRepository.setExerciseType(exerciseDto.getExerciseType());
         exerciseFromRepository.setNumberOfTimes(exerciseDto.getNumberOfTimes());
         exerciseFromRepository.setNumberOfApproaches(exerciseDto.getNumberOfApproaches());
@@ -61,6 +62,7 @@ public class ExerciseServiceImpl implements ExerciseService{
     private static Exercise toExercise(ExerciseDTO exerciseDTO) {
         Exercise exercise = new Exercise();
 
+        exercise.setId(exerciseDTO.getId());
         exercise.setExerciseType(exerciseDTO.getExerciseType());
         exercise.setNumberOfTimes(exerciseDTO.getNumberOfTimes());
         exercise.setNumberOfApproaches(exerciseDTO.getNumberOfApproaches());

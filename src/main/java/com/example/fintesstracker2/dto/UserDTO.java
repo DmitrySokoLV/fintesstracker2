@@ -3,7 +3,6 @@ package com.example.fintesstracker2.dto;
 import com.example.fintesstracker2.model.Training;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.util.Set;
 
 @Data

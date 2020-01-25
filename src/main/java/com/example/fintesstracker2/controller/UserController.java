@@ -41,7 +41,6 @@ public class UserController {
         return userService.createUser(userDto);
     }
 
-
     @PutMapping("/{id}")
     public void update(@PathVariable long id, UserDTO userDto) {
         userService.updateUser(id, userDto);
@@ -55,6 +54,7 @@ public class UserController {
     private static UserDTO toUserDTO(User user) {
         UserDTO dto = new UserDTO();
 
+        dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());

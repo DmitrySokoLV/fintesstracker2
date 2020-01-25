@@ -34,6 +34,7 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public void updateTraining(long id, TrainingDTO trainingDto) {
         Training trainingFromRepository = findById(id);
+        trainingFromRepository.setId(trainingDto.getId());
         trainingFromRepository.setStatus(trainingDto.getStatus());
         trainingFromRepository.setDate(trainingDto.getDate());
         trainingFromRepository.setUser(trainingDto.getUser());
@@ -57,6 +58,7 @@ public class TrainingServiceImpl implements TrainingService {
     private static Training toTraining(TrainingDTO trainingDTO) {
         Training training = new Training();
 
+        training.setId(training.getId());
         training.setStatus(trainingDTO.getStatus());
         training.setDate(trainingDTO.getDate());
         training.setUser(trainingDTO.getUser());
