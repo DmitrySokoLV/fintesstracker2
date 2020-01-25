@@ -54,7 +54,6 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public void updateNumberOfApproaches(long id, int numberOfApproaches) {
         Exercise exerciseFromRepository = findById(id);
-
         exerciseFromRepository.setNumberOfApproaches(numberOfApproaches);
         exerciseRepository.save(exerciseFromRepository);
     }
