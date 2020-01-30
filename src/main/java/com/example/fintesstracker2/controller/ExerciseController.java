@@ -36,7 +36,7 @@ public class ExerciseController {
     public long create(@RequestBody ExerciseDTO exerciseDto) {return exerciseService.createExercise(exerciseDto); }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, ExerciseDTO exerciseDto) { exerciseService.updateExercise(id, exerciseDto); }
+    public void update(@PathVariable long id, @RequestBody ExerciseDTO exerciseDto) { exerciseService.updateExercise(id, exerciseDto); }
 
     @DeleteMapping("/{id")
     public void removeExercise(@PathVariable long id) {

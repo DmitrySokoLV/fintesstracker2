@@ -1,9 +1,12 @@
 package com.example.fintesstracker2.controller;
 
 import com.example.fintesstracker2.dto.UserDTO;
+import com.example.fintesstracker2.exception.NotFoundException;
 import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +45,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, UserDTO userDto) {
+    public void update(@PathVariable long id, @RequestBody UserDTO userDto) {
         userService.updateUser(id, userDto);
+
     }
 
     @DeleteMapping("/{id}")

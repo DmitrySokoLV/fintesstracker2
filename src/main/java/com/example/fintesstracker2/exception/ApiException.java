@@ -1,18 +1,18 @@
 package com.example.fintesstracker2.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
 @Setter
 public class ApiException {
     private final String message;
-    private final  Throwable throwable;
-    private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;
+    private final Throwable throwable;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
+    private final LocalDateTime localDateTime;
 }

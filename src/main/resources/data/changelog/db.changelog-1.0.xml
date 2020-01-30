@@ -7,39 +7,22 @@
 
     <changeSet id="1" author="Dima">
         <sql>
-            create table `user` (
+            CREATE TABLE `user` (
             `id`          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             `name`        VARCHAR(30) NOT NULL,
-            `email`       VARCHAR(30) NOT NULL,
-            `password`    VARCHAR(30) NOT NULL,
             `weight`      DOUBLE NOT NULL,
             `height`      INT NOT NULL,
             `bmi`         DOUBLE NULL
             );
         </sql>
         <rollback>
-            drop table user;
+            DROP TABLE `user`;
         </rollback>
     </changeSet>
 
     <changeSet id="2" author="Dima">
         <sql>
-            create table `training`  (
-            `id`              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            `status`          VARCHAR(30) NOT NULL,
-            `created_date`    TIMESTAMP NOT NULL,
-            `user_id`         INT UNSIGNED NOT NULL
-            );
-        </sql>
-        <rollback>
-            drop table training;
-        </rollback>
-    </changeSet>
-
-
-    <changeSet id="3" author="Dima">
-        <sql>
-            create table `exercise`  (
+            CREATE TABLE `exercise`  (
             `id`                    INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             `exerciseType`          VARCHAR(30) NULL,
             `numberOfTimes`         INT NULL,
@@ -47,13 +30,28 @@
             );
         </sql>
         <rollback>
-            drop table exercise;
+            DROP TABLE `exercise`;
         </rollback>
     </changeSet>
 
+    <changeSet id="3" author="Dima">
+        <sql>
+            CREATE TABLE `training`  (
+            `id`              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            `status`          VARCHAR(30) NOT NULL,
+            `created_date`    TIMESTAMP NOT NULL,
+            `user_id`         INT UNSIGNED NOT NULL
+            );
+        </sql>
+        <rollback>
+            DROP TABLE `training`;
+        </rollback>
+    </changeSet>
+
+
     <changeSet id="4" author="Dima">
         <sql>
-            create table `training_exercises` (
+            CREATE TABLE `training_exercises` (
             `id`            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             `training_id`   INT UNSIGNED NOT NULL,
             `exercise_id`   INT UNSIGNED NOT NULL,
@@ -62,13 +60,35 @@
             );
         </sql>
         <rollback>
-            drop table training_exercises;
+            DROP TABLE `training_exercises`;
         </rollback>
     </changeSet>
 
     <changeSet id="5" author="Dima">
         <sql>
-            INSERT INTO `user` (name, email, password, weight, height, bmi) VALUES ('dima', 'sokoldmitryv@gmail.com', '12345678', 76.5, 176, 25.0);
+            INSERT INTO `user` (name, weight, height, bmi) VALUES ('dima', 76.5, 178, 25.0);
         </sql>
+        <rollback>
+            DELETE `user` WHERE name='dima' AND weight=76.5 AND height=178 AND bmi=25.0 ;
+        </rollback>
     </changeSet>
+
+    <changeSet id="6" author="Dima">
+        <sql>
+            ALTER TABLE `user` ADD `email` VARCHAR(30) NOT NULL;
+        </sql>
+        <rollback>
+            ALTER TABLE `user` DROP COLUMN `email`;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="7" author="Dima">
+        <sql>
+            ALTER TABLE `user` ADD `password` VARCHAR(30) NOT NULL;
+        </sql>
+        <rollback>
+            ALTER TABLE `user` DROP COLUMN `password`;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

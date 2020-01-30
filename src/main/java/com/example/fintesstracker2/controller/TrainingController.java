@@ -42,7 +42,7 @@ public class TrainingController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, TrainingDTO trainingDto) {
+    public void update(@PathVariable long id, @RequestBody TrainingDTO trainingDto) {
         trainingService.updateTraining(id, trainingDto);
     }
 

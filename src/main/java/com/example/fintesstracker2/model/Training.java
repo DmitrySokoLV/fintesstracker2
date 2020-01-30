@@ -2,6 +2,7 @@ package com.example.fintesstracker2.model;
 
 
 import com.example.fintesstracker2.model.enums.StatusTraining;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,6 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-
 @Entity
 @Table(name = "training")
 public class Training {

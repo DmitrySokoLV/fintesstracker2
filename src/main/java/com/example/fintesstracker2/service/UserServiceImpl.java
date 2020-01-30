@@ -1,6 +1,7 @@
 package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.UserDTO;
+import com.example.fintesstracker2.exception.NotFoundException;
 import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override
@@ -36,7 +37,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(long id, UserDTO userDto) {
         User userFromRepository = findById(id);
-        userFromRepository.setId(userDto.getId());
         userFromRepository.setName(userDto.getName());
         userFromRepository.setWeight(userDto.getWeight());
         userFromRepository.setHeight(userDto.getHeight());
@@ -67,16 +67,15 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private static User toUser(UserDTO userDTO) {
+    private User toUser(UserDTO userDTO) {
         User user = new User();
 
-        user.setId(userDTO.getId());
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setWeight(userDTO.getWeight());
         user.setHeight(userDTO.getHeight());
-        user.setBmi(userDTO.getBmi());
+        user.setBmi(bmiCalculate(user.getWeight(), user.getHeight()));
         user.setTrainings(userDTO.getTrainings());
 
         return user;
