@@ -63,7 +63,10 @@ public class UserServiceImpl implements UserService {
     }
 
     private double bmiCalculate(double weight, int height) {
-        return weight / Math.pow(height / PERCENT, VALUE_TO_THE_FORMULA);
+
+        double result = weight / Math.pow(height / PERCENT, VALUE_TO_THE_FORMULA);
+        return Math.round((result * 100d) / 100d);
+
     }
 
 
