@@ -13,13 +13,13 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(value = {NotFoundException.class})
     public ResponseEntity<Object> handleApiRequestException(NotFoundException exception) {
-
         ApiException apiException = new ApiException(
                 exception.getMessage(),
                 exception,
                 LocalDateTime.now(Clock.systemUTC())
         );
-
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
+
+
 }
