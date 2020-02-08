@@ -1,6 +1,7 @@
 package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.UserDTO;
+import com.example.fintesstracker2.exception.BadRequestException;
 import com.example.fintesstracker2.exception.NotFoundException;
 import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.repository.UserRepository;
@@ -13,14 +14,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final static double MIN_BMI = 25;
-    private final static double PERCENT = 100.0;
-    private final static int VALUE_TO_THE_FORMULA = 2;
+    private static final double MIN_BMI = 25;
+    private static final double PERCENT = 100.0;
+    private static final int VALUE_TO_THE_FORMULA = 2;
+    private static final double FOR_DECIMAL_ROUNDING_FORMULA = 100d;
 
     private final UserRepository userRepository;
 
     @Override
     public User findById(long id) {
+
+        if (id < 0) {
+            throw new BadRequestException("Incorrect id");
+        }
+
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
     }
 
@@ -62,10 +69,16 @@ public class UserServiceImpl implements UserService {
         return newBmi;
     }
 
+    // ошибку деления на ноль, если пользователь введет ноль
     private double bmiCalculate(double weight, int height) {
 
         double result = weight / Math.pow(height / PERCENT, VALUE_TO_THE_FORMULA);
-        return Math.round((result * 100d) / 100d);
+
+        if (result == 0) {
+            throw new NullPointerException("Division by zero error. you entered incorrect data");
+        }
+
+        return Math.round((result * FOR_DECIMAL_ROUNDING_FORMULA) / FOR_DECIMAL_ROUNDING_FORMULA);
 
     }
 

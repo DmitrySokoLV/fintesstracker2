@@ -2,6 +2,7 @@ package com.example.fintesstracker2.controller;
 
 import com.example.fintesstracker2.dto.TrainingDTO;
 import com.example.fintesstracker2.model.Training;
+import com.example.fintesstracker2.repository.UserRepository;
 import com.example.fintesstracker2.service.TrainingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class TrainingController {
 
     private final TrainingService trainingService;
+    private final UserRepository userRepository;
 
     @GetMapping
     public List<TrainingDTO> findAll() {
@@ -57,7 +59,7 @@ public class TrainingController {
         dto.setId(training.getId());
         dto.setStatus(training.getStatus());
         dto.setDate(training.getDate());
-        dto.setUser(training.getUser());
+        dto.setId(training.getId());
         dto.setExercises(training.getExercises());
 
         return dto;

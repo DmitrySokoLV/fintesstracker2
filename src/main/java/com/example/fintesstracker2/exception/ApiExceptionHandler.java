@@ -12,13 +12,30 @@ import java.time.LocalDateTime;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(value = {NotFoundException.class})
-    public ResponseEntity<Object> handleApiRequestException(NotFoundException exception) {
+    public ResponseEntity<Object> notFoundApiRequestException(NotFoundException exception) {
         ApiException apiException = new ApiException(
                 exception.getMessage(),
-                exception,
                 LocalDateTime.now(Clock.systemUTC())
         );
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {BadRequestException.class})
+    public ResponseEntity<Object> badRequestException(BadRequestException exception) {
+        ApiException apiException = new ApiException(
+                exception.getMessage(),
+                LocalDateTime.now(Clock.systemUTC())
+        );
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {NullPointerException.class})
+    public ResponseEntity<Object> nullPointerException(NullPointerException exception) {
+        ApiException apiException = new ApiException(
+                exception.getMessage(),
+                LocalDateTime.now(Clock.systemUTC())
+        );
+        return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
     }
 
 

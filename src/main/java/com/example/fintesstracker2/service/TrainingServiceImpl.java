@@ -1,9 +1,13 @@
 package com.example.fintesstracker2.service;
 
 import com.example.fintesstracker2.dto.TrainingDTO;
+import com.example.fintesstracker2.exception.BadRequestException;
+import com.example.fintesstracker2.exception.NotFoundException;
 import com.example.fintesstracker2.model.Training;
+import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.model.enums.StatusTraining;
 import com.example.fintesstracker2.repository.TrainingRepository;
+import com.example.fintesstracker2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +18,15 @@ import java.util.List;
 public class TrainingServiceImpl implements TrainingService {
 
     private final TrainingRepository trainingRepository;
+    private final UserRepository userRepository;
 
     @Override
     public Training findById(long id) {
-        return trainingRepository.findById(id).orElseThrow(() -> new RuntimeException("Training not found"));
+        if (id < 0) {
+            throw new BadRequestException("Incorrect id");
+        }
+
+        return trainingRepository.findById(id).orElseThrow(() -> new NotFoundException("Training not found"));
     }
 
     @Override
@@ -36,8 +45,12 @@ public class TrainingServiceImpl implements TrainingService {
         Training trainingFromRepository = findById(id);
         trainingFromRepository.setStatus(trainingDto.getStatus());
         trainingFromRepository.setDate(trainingDto.getDate());
-        trainingFromRepository.setUser(trainingDto.getUser());
+
+        User user = userRepository.getOne(trainingDto.getUser_id());
+        trainingFromRepository.setUser(user);
+
         trainingFromRepository.setExercises(trainingDto.getExercises());
+
         trainingRepository.save(trainingFromRepository);
     }
 
@@ -54,12 +67,13 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
 
-    private static Training toTraining(TrainingDTO trainingDTO) {
+    private Training toTraining(TrainingDTO trainingDTO) {
         Training training = new Training();
+        User user = userRepository.getOne(trainingDTO.getUser_id());
 
         training.setStatus(trainingDTO.getStatus());
         training.setDate(trainingDTO.getDate());
-        training.setUser(trainingDTO.getUser());
+        training.setUser(user);
         training.setExercises(trainingDTO.getExercises());
 
         return training;

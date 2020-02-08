@@ -2,7 +2,6 @@ package com.example.fintesstracker2.model;
 
 
 import com.example.fintesstracker2.model.enums.StatusTraining;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -49,4 +48,5 @@ public class Training {
             joinColumns = @JoinColumn(name = "training_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "exercise_id", nullable = false))
     private Set<Exercise> exercises;
+
 }

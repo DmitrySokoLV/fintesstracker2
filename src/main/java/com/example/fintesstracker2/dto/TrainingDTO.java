@@ -1,7 +1,6 @@
 package com.example.fintesstracker2.dto;
 
 import com.example.fintesstracker2.model.Exercise;
-import com.example.fintesstracker2.model.User;
 import com.example.fintesstracker2.model.enums.StatusTraining;
 import lombok.Data;
 
@@ -16,7 +15,7 @@ public class TrainingDTO {
 
     private LocalDate date;
 
-    private User user;
+    private long user_id;
 
     private Set<Exercise> exercises;
 }

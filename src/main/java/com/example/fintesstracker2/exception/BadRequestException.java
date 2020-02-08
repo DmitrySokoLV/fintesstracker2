@@ -1,4 +1,8 @@
 package com.example.fintesstracker2.exception;
 
-public class BadRequestException {
+public class BadRequestException extends RuntimeException {
+
+    public BadRequestException(String message) {
+        super(message);
+    }
 }

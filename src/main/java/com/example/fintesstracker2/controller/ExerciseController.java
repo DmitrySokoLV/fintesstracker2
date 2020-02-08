@@ -24,19 +24,27 @@ public class ExerciseController {
     private final ExerciseService exerciseService;
 
     @GetMapping
-    public List<ExerciseDTO> findAll() { return exerciseService.findAll()
-            .stream()
-            .map(ExerciseController::toExerciseDTO)
-            .collect(Collectors.toList()); }
+    public List<ExerciseDTO> findAll() {
+        return exerciseService.findAll()
+                .stream()
+                .map(ExerciseController::toExerciseDTO)
+                .collect(Collectors.toList());
+    }
 
     @GetMapping("/{id}")
-    public ExerciseDTO findById(@PathVariable long id) { return toExerciseDTO(exerciseService.findById(id)); }
+    public ExerciseDTO findById(@PathVariable long id) {
+        return toExerciseDTO(exerciseService.findById(id));
+    }
 
     @PostMapping
-    public long create(@RequestBody ExerciseDTO exerciseDto) {return exerciseService.createExercise(exerciseDto); }
+    public long create(@RequestBody ExerciseDTO exerciseDto) {
+        return exerciseService.createExercise(exerciseDto);
+    }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, @RequestBody ExerciseDTO exerciseDto) { exerciseService.updateExercise(id, exerciseDto); }
+    public void update(@PathVariable long id, @RequestBody ExerciseDTO exerciseDto) {
+        exerciseService.updateExercise(id, exerciseDto);
+    }
 
     @DeleteMapping("/{id")
     public void removeExercise(@PathVariable long id) {
