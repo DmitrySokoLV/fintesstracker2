@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Setter
 public class ApiException {
     private final String message;
-    private final Throwable throwable;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     private final LocalDateTime localDateTime;
 }
